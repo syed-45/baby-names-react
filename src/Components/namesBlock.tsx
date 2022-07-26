@@ -12,9 +12,17 @@ for (let i = 0; i < 10; i++) {
 }
 
 
-function NamesBlock(): JSX.Element{
+
+function NamesBlock(names: string[]): JSX.Element{
+    const blockStyle={backgroundColor:'lightblue',alignItems:'center',
+    marginTop:'5px'
+    }
     return(
         <>
+            
+            <div style={blockStyle}>HEllo</div>
+            <div style={blockStyle}>Hi</div>
+            <div style={blockStyle}>Hi again</div>
         </>
     )
 }
