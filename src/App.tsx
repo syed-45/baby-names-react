@@ -1,12 +1,11 @@
 import NamesBlock from "./Components/namesBlock";
 import babyNamesData from "./baby-names.json";
 
-interface babyObj{
-  id: number
-  name: string
-  sex: string
+interface babyObj {
+  id: number;
+  name: string;
+  sex: string;
 }
-
 
 function App(): JSX.Element {
   return (
@@ -15,16 +14,16 @@ function App(): JSX.Element {
         border: "5px grey solid",
         width: "80%",
         height: "300px",
-        display: "flex",        
+        display: "flex",
         flexFlow: "row wrap",
         alignItems: "start",
         justifyContent: "space-evenly",
         marginLeft: "auto",
         marginRight: "auto",
-        padding: "40px"
+        padding: "40px",
       }}
     >
-      <NamesBlock />      
+      <NamesBlock />
     </main>
   );
 }
