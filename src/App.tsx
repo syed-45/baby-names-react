@@ -1,11 +1,11 @@
 import NamesBlock from "./Components/namesBlock";
-import babyNamesData from "./baby-names.json";
+// import babyNamesData from "./baby-names.json";
 
-interface babyObj {
-  id: number;
-  name: string;
-  sex: string;
-}
+// interface babyObj {
+//   id: number;
+//   name: string;
+//   sex: string;
+// }
 
 function App(): JSX.Element {
   return (
