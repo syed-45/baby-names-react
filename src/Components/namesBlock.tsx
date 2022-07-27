@@ -1,29 +1,43 @@
-import babyNames from "../baby-names.json";
-// import namesBlock
+import babyNamesData from "../baby-names.json";
 
-babyNames.sort(function (a, b) {
+babyNamesData.sort(function (a, b) {
   const textA = a.name.toUpperCase();
   const textB = b.name.toUpperCase();
   return textA < textB ? -1 : textA > textB ? 1 : 0;
 });
 
-for (let i = 0; i < 10; i++) {
-  console.log(babyNames[i].name);
+const blockStyleBoys = {
+  backgroundColor: "lightblue",
+  alignItems: "center",
+  marginTop: "8px",
+  marginRight: "8px",
+  borderRadius: '3px'  
+};
+const blockStyleGirls = {
+  backgroundColor: "lightpink",
+  alignItems: "center",
+  marginTop: "8px",
+  marginRight: "8px",
+  borderRadius: '3px'  
+};
+
+const babyNames:JSX.Element[] = []
+for (let i = 0; i < babyNamesData.length; i++) {
+  if (babyNamesData[i].sex==='m') {
+    babyNames.push(<div style={blockStyleBoys}>{babyNamesData[i].name}</div>);
+  } else {
+    babyNames.push(<div style={blockStyleGirls}>{babyNamesData[i].name}</div>);
+  }
 }
 
-function NamesBlock(names: string[]): JSX.Element {
-  const blockStyle = {
-    backgroundColor: "lightblue",
-    alignItems: "center",
-    marginTop: "5px",
-  };
+function NamesBlock(): JSX.Element {  
+  
   return (
     <>
-      <div style={blockStyle}>HEllo</div>
-      <div style={blockStyle}>Hi</div>
-      <div style={blockStyle}>Hi again</div>
+      {babyNames}
     </>
   );
 }
+
 
 export default NamesBlock;
