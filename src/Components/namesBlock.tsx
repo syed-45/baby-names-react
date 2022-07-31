@@ -43,32 +43,29 @@ function NamesBlock(): JSX.Element {
         onChange={(event) => {
           setInputText(event.target.value);
           setBabyNamesState(
-            babyNamesData.filter((obj: babyObj): boolean => {              
-                return obj.name.toLowerCase().startsWith(event.target.value);             
+            babyNamesData.filter((obj: babyObj): boolean => {
+              return obj.name.toLowerCase().includes(event.target.value);
             })
           );
         }}
       />
-      <div style={{ height: "0", flexBasis: "100%" }}></div>     
+      <div style={{ height: "0", flexBasis: "100%" }}></div>
 
-      {
-        babyNamesState.map( (obj) => {
-          if (obj.sex === "m") {
-            return (
-              <div key={obj.id} style={blockStyleBoys}>
-                {obj.name}
-              </div>
-            );
-          } else {
-            return (
-              <div key={obj.id} style={blockStyleGirls}>
-                {obj.name}
-              </div>
-            );
-          }
-        } 
-        )
-      }
+      {babyNamesState.map((obj) => {
+        if (obj.sex === "m") {
+          return (
+            <div key={obj.id} style={blockStyleBoys}>
+              {obj.name}
+            </div>
+          );
+        } else {
+          return (
+            <div key={obj.id} style={blockStyleGirls}>
+              {obj.name}
+            </div>
+          );
+        }
+      })}
 
       {console.log(babyNamesState)}
     </>
