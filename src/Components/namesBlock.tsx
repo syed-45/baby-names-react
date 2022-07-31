@@ -30,23 +30,6 @@ const blockStyleGirls = {
   borderRadius: "3px",
 };
 
-const babyNamesBlock: JSX.Element[] = [];
-for (let i = 0; i < babyNamesData.length; i++) {
-  if (babyNamesData[i].sex === "m") {
-    babyNamesBlock.push(
-      <div key={i} style={blockStyleBoys}>
-        {babyNamesData[i].name}
-      </div>
-    );
-  } else {
-    babyNamesBlock.push(
-      <div key={i} style={blockStyleGirls}>
-        {babyNamesData[i].name}
-      </div>
-    );
-  }
-}
-
 function NamesBlock(): JSX.Element {
   const [inputText, setInputText] = useState<string>("");
   const [babyNamesState, setBabyNamesState] =
@@ -69,9 +52,27 @@ function NamesBlock(): JSX.Element {
           );
         }}
       />
-      <div style={{ height: "0", flexBasis: "100%" }}></div>
-      {babyNamesBlock}
-      {/* {console.log( [{id:2,name:"bro",sex:"m"},{id:2,name:"hello",sex:"m"}].filter(isTextInNames) )}       */}
+      <div style={{ height: "0", flexBasis: "100%" }}></div>     
+       
+      {
+        babyNamesState.map( (obj) => {
+          if (obj.sex === "m") {
+            return (
+              <div key={obj.id} style={blockStyleBoys}>
+                {obj.name}
+              </div>
+            );
+          } else {
+            return (
+              <div key={obj.id} style={blockStyleGirls}>
+                {obj.name}
+              </div>
+            );
+          }
+        } 
+        )
+      }
+
       {console.log(babyNamesState)}
     </>
   );
