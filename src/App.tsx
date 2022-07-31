@@ -21,6 +21,7 @@ function App(): JSX.Element {
         marginLeft: "auto",
         marginRight: "auto",
         padding: "40px",
+        overflow: "auto",
       }}
     >
       <NamesBlock />
