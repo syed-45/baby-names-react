@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { JsxAttribute } from "typescript";
+import { useState } from "react";
 import babyNamesData from "../baby-names.json";
 
 interface babyObj {
@@ -66,8 +65,6 @@ function NamesBlock(): JSX.Element {
           );
         }
       })}
-
-      {console.log(babyNamesState)}
     </>
   );
 }
