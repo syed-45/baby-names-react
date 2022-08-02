@@ -1,4 +1,5 @@
 import NamesBlock from "./Components/namesBlock";
+import "./Components/App.css"
 
 function App(): JSX.Element {
   return (

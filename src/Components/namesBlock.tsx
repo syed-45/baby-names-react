@@ -1,6 +1,7 @@
 import { useState } from "react";
 import babyNamesData from "../baby-names.json";
 
+
 interface babyObj {
   id: number;
   name: string;
@@ -13,25 +14,10 @@ babyNamesData.sort(function (a, b) {
   return textA < textB ? -1 : textA > textB ? 1 : 0;
 });
 
-const blockStyleBoys = {
-  backgroundColor: "lightblue",
-  alignItems: "center",
-  marginTop: "8px",
-  marginRight: "8px",
-  borderRadius: "3px",
-};
-
-const blockStyleGirls = {
-  backgroundColor: "lightpink",
-  alignItems: "center",
-  marginTop: "8px",
-  marginRight: "8px",
-  borderRadius: "3px",
-};
 
 function NamesBlock(): JSX.Element {
   const [inputText, setInputText] = useState<string>("");
-  const [babyNamesState, setBabyNamesState] =
+  const [babyNames, setbabyNames] =
     useState<babyObj[]>(babyNamesData);
 
   return (
@@ -41,25 +27,25 @@ function NamesBlock(): JSX.Element {
         width="20px"
         onChange={(event) => {
           setInputText(event.target.value);
-          setBabyNamesState(
+          setbabyNames(
             babyNamesData.filter((obj: babyObj): boolean => {
-              return obj.name.toLowerCase().includes(event.target.value);
+              return obj.name.toLowerCase().includes(event.target.value.toLowerCase());
             })
           );
         }}
       />
       <div style={{ height: "0", flexBasis: "100%" }}></div>
 
-      {babyNamesState.map((obj) => {
+      {babyNames.map((obj) => {
         if (obj.sex === "m") {
           return (
-            <div key={obj.id} style={blockStyleBoys}>
+            <div key={obj.id} className="babyBlockStyle">
               {obj.name}
             </div>
           );
         } else {
           return (
-            <div key={obj.id} style={blockStyleGirls}>
+            <div key={obj.id} className="babyBlockStyle" style={{backgroundColor:'lightpink'}}>
               {obj.name}
             </div>
           );
