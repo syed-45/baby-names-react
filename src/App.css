@@ -1,0 +1,21 @@
+.babyBlockStyle {
+  background-color: lightblue;
+  align-items: center;
+  margin-top: 8px;
+  margin-right: 8px;
+  border-radius: 3px;
+}
+
+main {
+  border: 5px grey solid;
+  width: 80%;
+  height: 300px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 40px 40px 40px;
+  overflow: auto;
+}
