@@ -16,8 +16,9 @@ babyNamesData.sort(function (a, b) {
 
 function NamesBlock(): JSX.Element {
   const [inputText, setInputText] = useState<string>("");
-  const [babyNames, setbabyNames] = useState<babyObjType[]>(babyNamesData);
+  const [babyNames, setBabyNames] = useState<babyObjType[]>(babyNamesData);
   const [favesList, setFavesList] = useState<babyObjType[]>([]);
+  const [gender, setGender] = useState("both");
 
   const handleBabyNameClick = (babyObj: babyObjType): void => {
     if (favesList.includes(babyObj)) {
@@ -30,8 +31,8 @@ function NamesBlock(): JSX.Element {
       setFavesList([...favesList, babyObj]);
     }
   };
-
-  function MapToDiv(babyObj: babyObjType): JSX.Element {
+  
+  function mapToDiv(babyObj: babyObjType): JSX.Element {
     if (babyObj.sex === "m") {
       return (
         <div
@@ -58,29 +59,38 @@ function NamesBlock(): JSX.Element {
 
   return (
     <>
-      <p>faves list: </p>
-      {favesList.map(MapToDiv)}
-
-      <div style={{ height: "0", flexBasis: "100%" }}></div>
       <input
         value={inputText}
         width="20px"
         onChange={(event) => {
           setInputText(event.target.value);
-          setbabyNames(
+          setBabyNames(
             babyNamesData.filter((babyObj: babyObjType): boolean => {
-              return babyObj.name
-                .toLowerCase()
-                .includes(event.target.value.toLowerCase());
+              return (
+                babyObj.name
+                  .toLowerCase()
+                  .includes(event.target.value.toLowerCase()) &&
+                babyObj.sex === gender
+              );
             })
           );
         }}
       />
+      <button onClick={() => setGender("both")}>BOTH</button>
+      <button onClick={() => setGender("m")}>M</button>
+      <button onClick={() => setGender("f")}>F</button>
       <div style={{ height: "0", flexBasis: "100%" }}></div>
-
+      <p>faves list: </p>
+      {favesList.map(mapToDiv)}
+      <div style={{ height: "0", flexBasis: "100%" }}></div>
       {babyNames
-        .filter((babyObj) => !favesList.includes(babyObj))
-        .map(MapToDiv)}
+        .filter((babyObj) => {
+          if (gender === "both") {
+            return !favesList.includes(babyObj);
+          }
+          return !favesList.includes(babyObj) && babyObj.sex === gender;
+        })
+        .map(mapToDiv)}
     </>
   );
 }
